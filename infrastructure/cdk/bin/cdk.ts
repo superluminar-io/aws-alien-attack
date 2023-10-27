@@ -20,7 +20,7 @@ if (!envname) {
 }
 else envname=envname.toUpperCase();
 console.log('# Environment name:',envname);
-var initProps = new NRTAProps();
+const initProps = new NRTAProps();
 initProps.setApplicationName(envname);
 
 let setApplicationProperty = (propName : string, description: string) => {
@@ -50,13 +50,4 @@ setApplicationProperty("kinesisintegration","Kinesis Data Streams integration");
 setApplicationProperty("firehose","Kinesis Firehose");
 
 
-Utils.checkforExistingBuckets(initProps.getBucketNames())
-    .then((listOfExistingBuckets) => {
-        if (listOfExistingBuckets && listOfExistingBuckets.length > 0)
-            console.log("# The following buckets are NOT being created because they already exist: ", listOfExistingBuckets);
-        initProps.addParameter('existingbuckets', listOfExistingBuckets);
-        new MainLayer(app, initProps.getApplicationName(), initProps);
-})
-    .catch((errorList) => {
-        console.log(errorList);
-});
+new MainLayer(app, initProps.getApplicationName(), initProps);

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 'use strict';
 const AWS = require('aws-sdk');
-if (!AWS.config.region) AWS.config.region = 'us-east-1';
+if (!AWS.config.region) AWS.config.region = process.env.CDK_DEPLOY_REGION || process.env.CDK_DEFAULT_REGION ;
 const COGNITO = new AWS.CognitoIdentityServiceProvider();
 const SSM = new AWS.SSM();
 
