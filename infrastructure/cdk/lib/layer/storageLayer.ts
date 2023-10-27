@@ -94,7 +94,6 @@ export class StorageLayer extends ResourceAwareConstruct {
     createBuckets() {
         let appBucketName = this.properties.getApplicationName().toLowerCase() + '.app';
         let rawDataBucketName = this.properties.getApplicationName().toLowerCase() + '.raw';
-
         let appBucket = this.createBucket( {
              bucketName : appBucketName
             ,isWeb : true
